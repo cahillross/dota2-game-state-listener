@@ -1,0 +1,51 @@
+default_stages: [commit]
+repos:
+  - repo: local
+    hooks:
+      - id: flake8
+        name: flake8
+        entry: flake8
+        language: system
+        pass_filenames: false
+        always_run: true
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        entry: black .
+        language: system
+        pass_filenames: false
+        always_run: true
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: isort . --profile black --filter-files
+        language: system
+        pass_filenames: false
+        always_run: true
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: mypy src/
+        language: system
+        pass_filenames: false
+        always_run: true
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest tests/ --cov-config=.coveragerc --cov=functions --cov-report=term --cov-report=html
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true
+  - repo: local
+    hooks:
+      - id: bandit
+        name: bandit
+        entry: bandit --configfile bandit.yaml -r src/   
+        language: system
+        pass_filenames: false
+        always_run: true

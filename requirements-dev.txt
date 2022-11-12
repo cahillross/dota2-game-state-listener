@@ -1,0 +1,12 @@
+flake8
+flake8-bugbear
+flake8-comprehensions
+black
+bandit
+pre-commit
+pytest
+pytest-cov
+pytest-mock
+pdoc3
+isort
+mypy
